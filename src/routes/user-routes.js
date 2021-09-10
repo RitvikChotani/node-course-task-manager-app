@@ -18,10 +18,6 @@ const upload = multer({
 	},
 });
 
-userRouter.get('/', (res,req) => {
-	res.send("This is the front page now")
-})
-
 userRouter.post("/users/me/avatar",	auth, upload.single("avatar"), async (req, res) => {
 		const buffer =  await sharp(req.file.buffer).resize({width: 250, height: 250}).png().toBuffer()
 	
